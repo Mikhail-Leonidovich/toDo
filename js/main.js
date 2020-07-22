@@ -10,6 +10,7 @@ function addNewBlockListElem() {
 
   let blockList = document.createElement("div");
   blockList.className = "block__list";
+  blockList.style = "display: flex";
 
   let blockListText = document.createElement("div");
   blockListText.className = "block__list-text";
@@ -21,7 +22,7 @@ function addNewBlockListElem() {
   btnDel.innerHTML = "Delete";
   blockList.append(btnDel);
 
-  block.prepend(blockList);
+  block.append(blockList);
 
   btnDel.addEventListener("click", () => {
     block.removeChild(blockList);
