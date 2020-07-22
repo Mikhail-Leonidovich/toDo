@@ -33,6 +33,14 @@ function clearInputText() {
   inputText.value = "";
 }
 
+inputText.addEventListener("keydown", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    addNewBlockListElem();
+    clearInputText();
+  }
+});
+
 btnAdd.addEventListener("click", () => {
   addNewBlockListElem();
   clearInputText();
