@@ -2,7 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Grenze Gotisch", cursive;
+  font-family: "Arima Madurai", cursive;
   font-size: 18px;
 }
 
@@ -23,7 +23,7 @@ body {
 }
 
 button {
-  font-family: "PT Sans", sans-serif;
+  font-family: "Bai Jamjuree", sans-serif;
 }
 
 button:hover {
@@ -36,53 +36,23 @@ button:hover {
   margin: 0 auto;
 }
 
+.content {
+  padding-top: 100px;
+}
+
 .block {
   min-height: 300px;
   width: 500px;
   margin: 0 auto;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
-  margin-top: 100px;
+  /* margin-top: 100px; */
   padding: 10px;
   border-radius: 3px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* =============
-  first block 
-===============*/
-
-.block__list {
-  
-  justify-content: space-around;
-  margin-bottom: 15px;
-  min-height: 20px;
-  display: none;
-}
-
-.block__list-text {
-  padding-left: 10px;
-  width: 75%;
-  min-height: 30px;
-  text-align: justify;
-  overflow: hidden;
-  /* border-bottom: solid 1.5px rgb(240, 112, 112); */
-  border-radius: 3px;
-  word-wrap: break-word;
-  background-color: #fff;
-}
-
-.btn-del {
-  width: 20%;
-  height: 30px;
-  border: 0.5px solid rgb(214, 40, 40);
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: rgb(238, 108, 108);
-  opacity: 0.8;
-}
-
-/* =============
-  second block 
+  first block
 ===============*/
 
 .block__add {
@@ -99,6 +69,8 @@ button:hover {
   height: 30px;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
   border-radius: 3px;
+  font-size: 19px;
+  background-color: rgb(215, 235, 251);
 }
 
 .block__add-text[type="text"]:focus {
@@ -107,13 +79,62 @@ button:hover {
   text-align: justify;
 }
 
+.block__add-text::placeholder {
+  font-size: 16px;
+}
+
 .btn-add {
   width: 20%;
   height: 30px;
-  border: 0.5px solid rgb(40, 143, 228);
+  border: 0.5px solid rgb(16, 129, 221);
   border-radius: 3px;
   cursor: pointer;
-  background-color: rgb(33, 181, 240);
-  outline-color: rgb(40, 143, 228);
-  opacity: 0.8;
+  background-color: rgb(54, 197, 253);
+  outline: none;
 }
+
+.btn-add:hover {
+  background-color: rgb(32, 178, 236);
+}
+
+/* =================
+  first block - END
+===================*/
+
+/* =============
+  second block 
+===============*/
+
+.block__list {
+  justify-content: space-around;
+  margin-bottom: 15px;
+  min-height: 20px;
+  display: none;
+}
+
+.block__list-text {
+  padding-left: 10px;
+  width: 75%;
+  min-height: 30px;
+  text-align: justify;
+  border-radius: 3px;
+  word-wrap: break-word;
+  background-color: rgb(245, 226, 226);
+}
+
+.btn-del {
+  width: 20%;
+  height: 30px;
+  border: 0.5px solid rgb(214, 40, 40);
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: rgb(241, 123, 123);
+}
+
+.btn-del:hover {
+  background-color: rgb(243, 109, 109);
+  outline: none;
+}
+/* =================
+  second block - END
+===================*/

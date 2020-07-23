@@ -6,28 +6,47 @@
     <title>ToDo</title>
     <link rel="stylesheet" href="/style/style.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch&family=PT+Sans:ital@1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@500&family=Bai+Jamjuree:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/burger_menu/burger_css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="block">
-        <div class="block__list">
-          <div class="block__list-text"></div>
-          <button class="btn-del"></button>
-        </div>
-        <div class="block__add">
-          <input
-            class="block__add-text"
-            type="text"
-            placeholder="Введите заметку"
-          />
-          <button class="btn-add">Add</button>
+    <!-- burger-menu -->
+    <div class="burger-menu burger-menu__active">
+      <a href="#" class="burger-menu__button">
+        <span class="burger-menu__line"></span>
+      </a>
+      <nav class="burger-menu__nav burger-menu__nav__active">
+        <a href="#" class="burger-menu__link">Completed</a>
+        <a href="#" class="burger-menu__link">Тест-1</a>
+        <a href="#" class="burger-menu__link">Тест-2</a>
+      </nav>
+    </div>
+    <!-- burger-menu END-->
+
+    <!-- content -->
+    <section class="content">
+      <div class="container">
+        <div class="block">
+          <div class="block__add">
+            <input
+              class="block__add-text"
+              type="text"
+              placeholder="Введите заметку"
+            />
+            <button class="btn-add">Add</button>
+          </div>
+          <div class="block__list">
+            <div class="block__list-text"></div>
+            <button class="btn-del"></button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+    <!-- content END -->
 
     <script src="/js/main.js"></script>
+    <script src="/burger_menu/burger_js/main.js"></script>
   </body>
 </html>
