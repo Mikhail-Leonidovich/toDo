@@ -1,11 +1,16 @@
-let burgerMenu = document.querySelector(".burger-menu");
-let btnBurgerMenu = document.querySelector(".burger-menu__button");
-let burgerNav = document.querySelector(".burger-menu__nav");
+const burgerMenu = document.querySelector(".burger-menu");
+const btnBurgerMenu = document.querySelector(".burger-menu__button");
+const burgerNav = document.querySelector(".burger-menu__nav");
+const overlay = document.querySelector(".burger-menu__overlay");
 
 function burgerChangeVision() {
   burgerMenu.classList.toggle("burger-menu__active");
 }
 
 btnBurgerMenu.addEventListener("click", () => {
+  burgerChangeVision();
+});
+
+overlay.addEventListener("click", () => {
   burgerChangeVision();
 });

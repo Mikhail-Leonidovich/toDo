@@ -129,11 +129,11 @@ button:hover {
   border-radius: 3px;
   cursor: pointer;
   background-color: rgb(241, 123, 123);
+  outline: none;
 }
 
 .btn-del:hover {
   background-color: rgb(243, 109, 109);
-  outline: none;
 }
 /* =================
   second block - END
