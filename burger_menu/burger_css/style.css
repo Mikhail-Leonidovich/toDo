@@ -70,10 +70,15 @@
   overflow-y: auto;
   left: -100%;
   width: 250px;
+
+  animation-name: animation-nav-hide;
+  animation-duration: 2s;
 }
 
 .burger-menu__active .burger-menu__nav {
   left: 0;
+  animation-name: animation-nav-show;
+  animation-duration: 1s;
 }
 
 .burger-menu__link {
@@ -107,4 +112,26 @@
 
 .burger-menu__active .burger-menu__overlay {
   display: block;
+}
+
+/* ================
+    Animations
+================ */
+
+@keyframes animation-nav-show {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes animation-nav-hide {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
 }

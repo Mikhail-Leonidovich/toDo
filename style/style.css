@@ -41,11 +41,10 @@ button:hover {
 }
 
 .block {
-  min-height: 300px;
-  width: 500px;
+  min-height: 380px;
+  width: 600px;
   margin: 0 auto;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
-  /* margin-top: 100px; */
   padding: 10px;
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.4);
@@ -84,7 +83,7 @@ button:hover {
 }
 
 .btn-add {
-  width: 20%;
+  width: 22%;
   height: 30px;
   border: 0.5px solid rgb(16, 129, 221);
   border-radius: 3px;
@@ -96,10 +95,6 @@ button:hover {
 .btn-add:hover {
   background-color: rgb(32, 178, 236);
 }
-
-/* =================
-  first block - END
-===================*/
 
 /* =============
   second block 
@@ -119,22 +114,34 @@ button:hover {
   text-align: justify;
   border-radius: 3px;
   word-wrap: break-word;
-  background-color: rgb(245, 226, 226);
+  background-color: rgb(215, 235, 251);
 }
 
 .btn-del {
-  width: 20%;
+  width: 11%;
   height: 30px;
-  border: 0.5px solid rgb(214, 40, 40);
+  border: 0.5px solid rgb(16, 129, 221);
   border-radius: 3px;
   cursor: pointer;
-  background-color: rgb(241, 123, 123);
+  background-color: rgb(54, 197, 253);
   outline: none;
 }
 
 .btn-del:hover {
   background-color: rgb(243, 109, 109);
+  border: 0.5px solid rgb(238, 78, 78);
 }
-/* =================
-  second block - END
-===================*/
+
+.btn-done {
+  width: 9%;
+  height: 30px;
+  border: 0.5px solid rgb(6, 141, 6);
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: rgb(152, 251, 152);
+  outline: none;
+}
+
+.btn-done:hover {
+  background-color: rgb(106, 224, 106);
+}
