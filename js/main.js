@@ -1,48 +1,75 @@
 const block = document.querySelector(".block");
 const btnAdd = document.querySelector(".btn-add");
-const btnDone = document.querySelector(".btn-done");
 const inputText = document.querySelector(".block__add-text");
 
-let arrayOfTasks = [];
+let blockList;
+let blockListText;
+let btnDel;
+let btnDone;
 
-const addNewBlockListElem = () => {
-  if (!inputText.value) {
+const arrayOfTasks = [];
+
+const addInArrayOfTasks = (elem) => {
+  arrayOfTasks.push(elem);
+};
+
+const addNewBlockListElem = (elem) => {
+  if (!elem && elem == "") {
     alert("Вы не заполнили поле");
     return;
+  } else {
+    createNewBlockListElem(elem);
   }
+};
 
-  let task = inputText.value;
-  arrayOfTasks.push(task);
-
-  let blockList = document.createElement("div");
+let createBlockList = () => {
+  blockList = document.createElement("div");
   blockList.className = "block__list";
   blockList.style = "display: flex";
+  block.append(blockList);
+};
 
-  let blockListText = document.createElement("div");
+const createBlockListText = (elem) => {
+  blockListText = document.createElement("div");
   blockListText.className = "block__list-text";
-  blockListText.innerHTML = task;
+  blockListText.innerHTML = elem;
   blockList.append(blockListText);
+};
 
-  let btnDel = document.createElement("button");
+const createBtnDel = () => {
+  btnDel = document.createElement("button");
   btnDel.className = "btn-del";
   btnDel.innerHTML = "Delete";
   blockList.append(btnDel);
 
-  let btnDone = document.createElement("button");
+  btnDel.addEventListener("click", () => {
+    let arrIndex = arrayOfTasks.findIndex(
+      (task) => task === blockListText.innerHTML
+    );
+
+    arrayOfTasks.splice(arrIndex, 1);
+    block.removeChild(blockList);
+  });
+};
+
+const createBtnDone = () => {
+  btnDone = document.createElement("button");
   btnDone.className = "btn-done";
   btnDone.innerHTML = "Done";
   blockList.append(btnDone);
 
-  block.append(blockList);
-
-  btnDel.addEventListener("click", () => {
-    block.removeChild(blockList);
-  });
-
   btnDone.addEventListener("click", () => {
-    blockListText.style =
-      "text-decoration: line-through; background-color: #98FB98";
+    blockListText.style = "background-color: #98FB98;";
   });
+};
+
+const createNewBlockListElem = (elem) => {
+  addInArrayOfTasks(elem);
+
+  createBlockList();
+  createBlockListText(inputText.value);
+  createBtnDel();
+  createBtnDone();
 };
 
 const clearInputText = () => (inputText.value = "");
@@ -50,12 +77,12 @@ const clearInputText = () => (inputText.value = "");
 inputText.addEventListener("keydown", (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
-    addNewBlockListElem();
+    addNewBlockListElem(inputText.value);
     clearInputText();
   }
 });
 
 btnAdd.addEventListener("click", () => {
-  addNewBlockListElem();
+  addNewBlockListElem(inputText.value);
   clearInputText();
 });

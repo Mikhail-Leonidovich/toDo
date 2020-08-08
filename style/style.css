@@ -44,7 +44,7 @@ button:hover {
   min-height: 380px;
   width: 600px;
   margin: 0 auto;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.4);
@@ -135,13 +135,14 @@ button:hover {
 .btn-done {
   width: 9%;
   height: 30px;
-  border: 0.5px solid rgb(6, 141, 6);
+  border: 0.5px solid rgb(16, 129, 221);
   border-radius: 3px;
   cursor: pointer;
-  background-color: rgb(152, 251, 152);
+  background-color: rgb(54, 197, 253);
   outline: none;
 }
 
 .btn-done:hover {
+  border: 0.5px solid rgb(6, 141, 6);
   background-color: rgb(106, 224, 106);
 }
