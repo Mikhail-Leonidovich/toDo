@@ -1,28 +1,14 @@
 const block = document.querySelector(".block");
 const btnAdd = document.querySelector(".btn-add");
 const inputText = document.querySelector(".block__add-text");
-
-let blockList;
-let blockListText;
-let btnDel;
-let btnDone;
+const blockList = document.querySelector(".block__list");
+const blockListText = document.querySelector(".block__list-text");
+const btnDel = document.querySelector(".btn-del");
+const btnDone = document.querySelector(".btn-done");
 
 const arrayOfTasks = [];
 
-const addInArrayOfTasks = (elem) => {
-  arrayOfTasks.push(elem);
-};
-
-const addNewBlockListElem = (elem) => {
-  if (!elem && elem == "") {
-    alert("Вы не заполнили поле");
-    return;
-  } else {
-    createNewBlockListElem(elem);
-  }
-};
-
-let createBlockList = () => {
+/* let createBlockList = () => {
   blockList = document.createElement("div");
   blockList.className = "block__list";
   blockList.style = "display: flex";
@@ -41,15 +27,6 @@ const createBtnDel = () => {
   btnDel.className = "btn-del";
   btnDel.innerHTML = "Delete";
   blockList.append(btnDel);
-
-  btnDel.addEventListener("click", () => {
-    let arrIndex = arrayOfTasks.findIndex(
-      (task) => task === blockListText.innerHTML
-    );
-
-    arrayOfTasks.splice(arrIndex, 1);
-    block.removeChild(blockList);
-  });
 };
 
 const createBtnDone = () => {
@@ -57,22 +34,29 @@ const createBtnDone = () => {
   btnDone.className = "btn-done";
   btnDone.innerHTML = "Done";
   blockList.append(btnDone);
+}; */
 
-  btnDone.addEventListener("click", () => {
-    blockListText.style = "background-color: #98FB98;";
-  });
+const addNewBlockListElem = (elem) => {
+  if (!elem && elem == "") {
+    alert("Вы не заполнили поле");
+    return;
+  } else {
+    addInArrayOfTasks(elem);
+    displayTask();
+  }
 };
 
-const createNewBlockListElem = (elem) => {
-  addInArrayOfTasks(elem);
-
-  createBlockList();
-  createBlockListText(inputText.value);
-  createBtnDel();
-  createBtnDone();
+const addInArrayOfTasks = (elem) => {
+  let newToDo = {
+    todo: elem,
+    checked: false,
+  };
+  arrayOfTasks.push(newToDo);
 };
 
-const clearInputText = () => (inputText.value = "");
+/* ДОДЕЛАТЬ */
+
+const displayTask = () => {};
 
 inputText.addEventListener("keydown", (e) => {
   if (e.keyCode === 13) {
@@ -86,3 +70,5 @@ btnAdd.addEventListener("click", () => {
   addNewBlockListElem(inputText.value);
   clearInputText();
 });
+
+const clearInputText = () => (inputText.value = "");
