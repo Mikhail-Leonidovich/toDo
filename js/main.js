@@ -1,11 +1,9 @@
 const block = document.querySelector(".block");
+const blockNew = document.querySelector(".block__new");
 
-const blockAdd = document.querySelector(".block__add");
 const inputText = document.querySelector(".block__add-text");
 const btnAdd = document.querySelector(".btn-add");
 
-const blockList = document.querySelector(".block__list");
-const blockListText = document.querySelector(".block__list-text");
 const btnDel = document.querySelector(".btn-del");
 const btnDone = document.querySelector(".btn-done");
 
@@ -51,10 +49,10 @@ const addInArrayOfTasks = (elem) => {
 };
 
 const displayTask = () => {
-  let test = "";
+  let blockNewInner = "";
 
   arrayOfTasks.forEach((item, i) => {
-    test += `
+    blockNewInner += `
     <div class="block__list" style="display : flex">
             <div id="#${i + 1}" class="block__list-text">${item.todo}</div>
             <button class="btn-del">Delete</button>
@@ -63,13 +61,5 @@ const displayTask = () => {
     `;
   });
 
-  block.innerHTML = `<div class="block__add">
-      <input
-        class="block__add-text"
-        type="text"
-        placeholder="Введите заметку"
-      />
-      <button type="button" class="btn-add">Add</button>
-    </div>  
-    ${test}`;
+  blockNew.innerHTML = blockNewInner;
 };
