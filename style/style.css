@@ -100,6 +100,11 @@ button:hover {
   second block 
 ===============*/
 
+.block__new {
+  display: flex;
+  flex-direction: column;
+}
+
 .block__list {
   justify-content: space-around;
   margin-bottom: 15px;
