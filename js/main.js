@@ -8,23 +8,24 @@ const btnDel = document.querySelector(".btn-del");
 const btnDone = document.querySelector(".btn-done");
 const blockListText = document.querySelector(".block__list-text");
 
-const arrayOfTasks = [];
+const incompletedTasks = document.getElementById("2");
 
-block.addEventListener("keydown", (e) => {
-  if (e.target.matches(".block__add-text")) {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      addNewBlockListElem(inputText.value);
-      clearInputText();
-    }
-  }
-});
+let arrayOfTasks = [];
+let arrayOfIncompletedTasks = [];
 
-block.addEventListener("click", (e) => {
-  if (e.target.matches(".btn-add")) {
+let counterId = 0;
+
+inputText.addEventListener("keydown", (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
     addNewBlockListElem(inputText.value);
     clearInputText();
   }
+});
+
+btnAdd.addEventListener("click", () => {
+  addNewBlockListElem(inputText.value);
+  clearInputText();
 });
 
 const clearInputText = () => {
@@ -38,10 +39,9 @@ const addNewBlockListElem = (elem) => {
   } else {
     addInArrayOfTasks(elem);
     displayTask();
+    CheckIncompletedTasks();
   }
 };
-
-let counterId = 0;
 
 const addInArrayOfTasks = (elem) => {
   counterId += 1;
@@ -59,11 +59,10 @@ const displayTask = () => {
     blockNew.removeChild(blockNew.lastChild);
   }
 
-  arrayOfTasks.forEach((item, i) => {
+  arrayOfTasks.forEach((item) => {
     let blockList = document.createElement("div");
     blockList.className = "block__list";
     blockList.id = item.id;
-    blockList.style = "display: flex";
 
     let blockListText = document.createElement("div");
     blockListText.className =
@@ -109,8 +108,30 @@ const displayTask = () => {
           elem.classList.toggle("done");
         }
       }
+      CheckIncompletedTasks();
     });
 
     blockNew.append(blockList);
   });
 };
+
+const CheckIncompletedTasks = () => {
+  arrayOfIncompletedTasks = [];
+  let obj = arrayOfTasks.filter((item) => {
+    return item.checked === false;
+  });
+  arrayOfIncompletedTasks.push(obj);
+};
+
+incompletedTasks.addEventListener("click", () => {
+  arrayOfTasks.forEach((item) => {
+    if (item.checked === true) {
+      let allBlockLists = document.querySelectorAll(".block__list");
+      for (let elem of allBlockLists) {
+        if (item.id === Number(elem.id)) {
+          elem.classList.toggle("hide");
+        }
+      }
+    }
+  });
+});

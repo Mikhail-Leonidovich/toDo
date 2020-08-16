@@ -109,7 +109,7 @@ button:hover {
   justify-content: space-around;
   margin-bottom: 15px;
   min-height: 20px;
-  display: none;
+  display: flex;
 }
 
 .block__list-text {
@@ -152,6 +152,14 @@ button:hover {
   background-color: rgb(106, 224, 106);
 }
 
+/* =============
+  Other classes
+================*/
+
 .done {
   background-color: rgb(106, 224, 106);
+}
+
+.hide {
+  display: none;
 }
