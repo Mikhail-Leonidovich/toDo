@@ -114,36 +114,3 @@ const displayTask = () => {
     blockNew.append(blockList);
   });
 };
-
-/* ==============> remake buttons <=============*/
-
-/* blockNew.addEventListener("click", (e) => {
-  if (e.target.matches(".btn-del")) {
-    let currentBtnDelId = e.target.id;
-
-    arrayOfTasks.forEach((item, i) => {
-      if (i === currentBtnDelId - 1) {
-        arrayOfTasks.splice(i, 1);
-
-        let allBlockLists = document.querySelectorAll(".block__list");
-
-        for (let element of allBlockLists) {
-          if (element.id === currentBtnDelId) {
-            element.remove(this);
-          }
-        }
-      }
-    });
-  } else if (e.target.matches(".btn-done")) {
-    let currentBtnDoneId = e.target.id;
-
-    let allBlockListTexts = document.querySelectorAll(".block__list-text");
-
-    for (let element of allBlockListTexts) {
-      if (element.id === currentBtnDoneId) {
-        element.style = "background-color: rgb(106, 224, 106)";
-        arrayOfTasks[currentBtnDoneId - 1].checked = true;
-      }
-    }
-  }
-}); */
