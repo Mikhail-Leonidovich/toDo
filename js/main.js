@@ -32,7 +32,7 @@ const clearInputText = () => {
 };
 
 const addNewBlockListElem = (elem) => {
-  if (elem == "") {
+  if (elem === "") {
     alert("Вы не заполнили поле");
     return;
   } else {
@@ -41,73 +41,109 @@ const addNewBlockListElem = (elem) => {
   }
 };
 
+let counterId = 0;
+
 const addInArrayOfTasks = (elem) => {
+  counterId += 1;
+
   let newToDo = {
     todo: elem,
     checked: false,
+    id: counterId,
   };
   arrayOfTasks.push(newToDo);
 };
 
 const displayTask = () => {
-  let blockNewInner = "";
-
-  /* КОСТЫЛЬ */
+  while (blockNew.lastChild) {
+    blockNew.removeChild(blockNew.lastChild);
+  }
 
   arrayOfTasks.forEach((item, i) => {
-    if (item.checked == false) {
-      blockNewInner += `
-      <div id="${i + 1}" class="block__list" style="display : flex">
-              <div id="${i + 1}" class="block__list-text">${item.todo}</div>
-              <button id="${i + 1}" class="btn-del">Delete</button>
-              <button id="${i + 1}" class="btn-done">Done</button>
-      </div>`;
-    } else if (item.checked == true) {
-      blockNewInner += `
-      <div id="${i + 1}" class="block__list" style="display : flex">
-              <div id="${
-                i + 1
-              }" class="block__list-text" style="background-color: rgb(106, 224, 106)">${
-        item.todo
-      }</div>
-              <button id="${i + 1}" class="btn-del">Delete</button>
-              <button id="${i + 1}" class="btn-done">Done</button>
-      </div>`;
-    }
-  });
+    let blockList = document.createElement("div");
+    blockList.className = "block__list";
+    blockList.id = item.id;
+    blockList.style = "display: flex";
 
-  blockNew.innerHTML = blockNewInner;
+    let blockListText = document.createElement("div");
+    blockListText.className =
+      item.checked === false ? "block__list-text" : "block__list-text done";
+    blockListText.innerHTML = item.todo;
+    blockListText.id = item.id;
+    blockList.append(blockListText);
+
+    let btnDel = document.createElement("button");
+    btnDel.className = "btn-del";
+    btnDel.innerHTML = "Delete";
+    btnDel.id = item.id;
+    blockList.append(btnDel);
+
+    let btnDone = document.createElement("button");
+    btnDone.className = "btn-done";
+    btnDone.innerHTML = "Done";
+    btnDone.id = item.id;
+    blockList.append(btnDone);
+
+    btnDel.addEventListener("click", () => {
+      let allBlockLists = document.querySelectorAll(".block__list");
+
+      for (let elem of allBlockLists) {
+        if (btnDel.id === elem.id) {
+          elem.remove(this);
+          arrayOfTasks.splice(--elem.id, 1);
+        }
+      }
+    });
+
+    btnDone.addEventListener("click", () => {
+      let allBlockListTexts = document.querySelectorAll(".block__list-text");
+
+      for (let elem of allBlockListTexts) {
+        if (btnDone.id === elem.id) {
+          arrayOfTasks.forEach((item) => {
+            if (item.id === Number(btnDone.id)) {
+              item.checked = !item.checked;
+            }
+          });
+
+          elem.classList.toggle("done");
+        }
+      }
+    });
+
+    blockNew.append(blockList);
+  });
 };
 
-block.addEventListener("click", (e) => {
+/* ==============> remake buttons <=============*/
+
+/* blockNew.addEventListener("click", (e) => {
   if (e.target.matches(".btn-del")) {
-    let currentBtnDel = e.target.id;
+    let currentBtnDelId = e.target.id;
 
     arrayOfTasks.forEach((item, i) => {
-      if (i == currentBtnDel - 1) {
-        /* arrayOfTasks.splice(i, 1); */
-
-        delete arrayOfTasks[i]; /* КОСТЫЛЬ */
+      if (i === currentBtnDelId - 1) {
+        arrayOfTasks.splice(i, 1);
 
         let allBlockLists = document.querySelectorAll(".block__list");
 
         for (let element of allBlockLists) {
-          if (element.id == currentBtnDel) {
+          if (element.id === currentBtnDelId) {
             element.remove(this);
           }
         }
       }
     });
   } else if (e.target.matches(".btn-done")) {
-    let currentBtnDone = e.target.id;
+    let currentBtnDoneId = e.target.id;
 
     let allBlockListTexts = document.querySelectorAll(".block__list-text");
 
     for (let element of allBlockListTexts) {
-      if (element.id == currentBtnDone) {
+      if (element.id === currentBtnDoneId) {
         element.style = "background-color: rgb(106, 224, 106)";
-        arrayOfTasks[currentBtnDone - 1].checked = true;
+        arrayOfTasks[currentBtnDoneId - 1].checked = true;
       }
     }
   }
-});
+}); */

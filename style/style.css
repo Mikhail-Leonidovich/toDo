@@ -151,3 +151,7 @@ button:hover {
   border: 0.5px solid rgb(6, 141, 6);
   background-color: rgb(106, 224, 106);
 }
+
+.done {
+  background-color: rgb(106, 224, 106);
+}
