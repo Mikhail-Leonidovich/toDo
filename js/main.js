@@ -8,7 +8,7 @@ const btnDel = document.querySelector(".btn-del");
 const btnDone = document.querySelector(".btn-done");
 const blockListText = document.querySelector(".block__list-text");
 
-const incompletedTasks = document.getElementById("2");
+const incompletedTasks = document.getElementById("1");
 
 let arrayOfTasks = [];
 let arrayOfIncompletedTasks = [];
@@ -87,9 +87,12 @@ const displayTask = () => {
       let allBlockLists = document.querySelectorAll(".block__list");
 
       for (let elem of allBlockLists) {
-        if (btnDel.id === elem.id) {
+        if (Number(btnDel.id) === Number(elem.id)) {
           elem.remove(this);
-          arrayOfTasks.splice(--elem.id, 1);
+          let test = arrayOfTasks.findIndex(
+            (item) => Number(item.id) === Number(elem.id)
+          );
+          arrayOfTasks.splice(test, 1);
         }
       }
     });
@@ -98,9 +101,9 @@ const displayTask = () => {
       let allBlockListTexts = document.querySelectorAll(".block__list-text");
 
       for (let elem of allBlockListTexts) {
-        if (btnDone.id === elem.id) {
+        if (Number(btnDone.id) === Number(elem.id)) {
           arrayOfTasks.forEach((item) => {
-            if (item.id === Number(btnDone.id)) {
+            if (Number(item.id) === Number(btnDone.id)) {
               item.checked = !item.checked;
             }
           });
