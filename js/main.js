@@ -41,7 +41,6 @@ const addNewBlockListElem = (elem) => {
   } else {
     addInArrayOfTasks(elem);
     displayTasks();
-    /*  CheckIncompletedTasks(); */
   }
 };
 
@@ -119,41 +118,13 @@ const displayTasks = () => {
         }
       }
       arrayOfIncompletedTasks = [];
-      /* CheckIncompletedTasks(); */
     });
 
     blockNew.append(blockList);
   });
 };
-/* убрать и переделать */
-
-/* const CheckIncompletedTasks = () => {
-  arrayOfIncompletedTasks = [];
-  let obj = arrayOfTasks.filter((item) => {
-    return item.checked === false;
-  });
-  arrayOfIncompletedTasks.push(obj);
-}; */
 
 incompletedTasks.addEventListener("click", () => {
-  let allBlockLists = document.querySelectorAll(".block__list");
-
-  arrayOfTasks.forEach((item) => {
-    for (let elem of allBlockLists) {
-      if (Number(item.id) === Number(elem.id) && item.checked === true) {
-        elem.classList.toggle("hide");
-      }
-    }
-  });
-
-  /* arrayOfTasks.forEach((item) => {
-    if (item.checked === true) {
-      let allBlockLists = document.querySelectorAll(".block__list");
-      for (let elem of allBlockLists) {
-        if (item.id === Number(elem.id)) {
-          elem.classList.toggle("hide");
-        }
-      }
-    }
-  }); */
+  showChecked = !showChecked;
+  displayTasks();
 });
