@@ -15,6 +15,8 @@ let arrayOfIncompletedTasks = [];
 
 let counterId = 0;
 
+let showChecked = false;
+
 inputText.addEventListener("keydown", (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
@@ -38,8 +40,8 @@ const addNewBlockListElem = (elem) => {
     return;
   } else {
     addInArrayOfTasks(elem);
-    displayTask();
-    CheckIncompletedTasks();
+    displayTasks();
+    /*  CheckIncompletedTasks(); */
   }
 };
 
@@ -54,12 +56,18 @@ const addInArrayOfTasks = (elem) => {
   arrayOfTasks.push(newToDo);
 };
 
-const displayTask = () => {
+const displayTasks = () => {
   while (blockNew.lastChild) {
     blockNew.removeChild(blockNew.lastChild);
   }
 
-  arrayOfTasks.forEach((item) => {
+  arrayOfIncompletedTasks = [...arrayOfTasks];
+  if (showChecked)
+    arrayOfIncompletedTasks = arrayOfTasks.filter(
+      (item) => item.checked === showChecked
+    );
+
+  arrayOfIncompletedTasks.forEach((item) => {
     let blockList = document.createElement("div");
     blockList.className = "block__list";
     blockList.id = item.id;
@@ -89,10 +97,10 @@ const displayTask = () => {
       for (let elem of allBlockLists) {
         if (Number(btnDel.id) === Number(elem.id)) {
           elem.remove(this);
-          let test = arrayOfTasks.findIndex(
+          let itemIndex = arrayOfTasks.findIndex(
             (item) => Number(item.id) === Number(elem.id)
           );
-          arrayOfTasks.splice(test, 1);
+          arrayOfTasks.splice(itemIndex, 1);
         }
       }
     });
@@ -107,27 +115,38 @@ const displayTask = () => {
               item.checked = !item.checked;
             }
           });
-
           elem.classList.toggle("done");
         }
       }
-      CheckIncompletedTasks();
+      arrayOfIncompletedTasks = [];
+      /* CheckIncompletedTasks(); */
     });
 
     blockNew.append(blockList);
   });
 };
+/* убрать и переделать */
 
-const CheckIncompletedTasks = () => {
+/* const CheckIncompletedTasks = () => {
   arrayOfIncompletedTasks = [];
   let obj = arrayOfTasks.filter((item) => {
     return item.checked === false;
   });
   arrayOfIncompletedTasks.push(obj);
-};
+}; */
 
 incompletedTasks.addEventListener("click", () => {
+  let allBlockLists = document.querySelectorAll(".block__list");
+
   arrayOfTasks.forEach((item) => {
+    for (let elem of allBlockLists) {
+      if (Number(item.id) === Number(elem.id) && item.checked === true) {
+        elem.classList.toggle("hide");
+      }
+    }
+  });
+
+  /* arrayOfTasks.forEach((item) => {
     if (item.checked === true) {
       let allBlockLists = document.querySelectorAll(".block__list");
       for (let elem of allBlockLists) {
@@ -136,5 +155,5 @@ incompletedTasks.addEventListener("click", () => {
         }
       }
     }
-  });
+  }); */
 });
