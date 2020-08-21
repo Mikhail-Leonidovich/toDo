@@ -137,11 +137,11 @@ burgerFilter.addEventListener("click", () => {
 
 filterTasks.addEventListener("input", () => {
   let allBlockLists = document.querySelectorAll(".block__list");
-  let filterTasksValue = filterTasks.value;
+  let filterTasksValue = filterTasks.value.toLowerCase();
   if (filterTasksValue != "") {
     arrayOfTasks.forEach((item) => {
-      let lol = item.todo.includes(filterTasksValue);
-      if (lol) {
+      let arrayItem = item.todo.toLowerCase().includes(filterTasksValue);
+      if (arrayItem) {
         for (let elem of allBlockLists) {
           if (Number(item.id) === Number(elem.id)) {
             elem.classList.remove("hide");
