@@ -9,6 +9,8 @@ const btnDone = document.querySelector(".btn-done");
 const blockListText = document.querySelector(".block__list-text");
 
 const incompletedTasks = document.getElementById("1");
+const burgerFilter = document.getElementById("2");
+const filterTasks = document.querySelector(".burger-menu__filter");
 
 let arrayOfTasks = [];
 let arrayOfIncompletedTasks = [];
@@ -60,11 +62,13 @@ const displayTasks = () => {
     blockNew.removeChild(blockNew.lastChild);
   }
 
-  arrayOfIncompletedTasks = [...arrayOfTasks];
-  if (showChecked)
+  if (showChecked) {
     arrayOfIncompletedTasks = arrayOfTasks.filter(
-      (item) => item.checked === showChecked
+      (item) => item.checked === !showChecked
     );
+  } else {
+    arrayOfIncompletedTasks = [...arrayOfTasks];
+  }
 
   arrayOfIncompletedTasks.forEach((item) => {
     let blockList = document.createElement("div");
@@ -117,9 +121,7 @@ const displayTasks = () => {
           elem.classList.toggle("done");
         }
       }
-      arrayOfIncompletedTasks = [];
     });
-
     blockNew.append(blockList);
   });
 };
@@ -127,4 +129,39 @@ const displayTasks = () => {
 incompletedTasks.addEventListener("click", () => {
   showChecked = !showChecked;
   displayTasks();
+});
+
+burgerFilter.addEventListener("click", () => {
+  filterTasks.classList.toggle("hide");
+});
+
+filterTasks.addEventListener("input", () => {
+  let allBlockLists = document.querySelectorAll(".block__list");
+  let filterTasksValue = filterTasks.value;
+  if (filterTasksValue != "") {
+    arrayOfTasks.forEach((item) => {
+      let lol = item.todo.includes(filterTasksValue);
+      if (lol) {
+        for (let elem of allBlockLists) {
+          if (Number(item.id) === Number(elem.id)) {
+            elem.classList.remove("hide");
+          }
+        }
+      } else {
+        for (let elem of allBlockLists) {
+          if (Number(item.id) === Number(elem.id)) {
+            elem.classList.add("hide");
+          }
+        }
+      }
+    });
+  } else {
+    arrayOfTasks.forEach((item) => {
+      for (let elem of allBlockLists) {
+        if (Number(item.id) === Number(elem.id)) {
+          elem.classList.remove("hide");
+        }
+      }
+    });
+  }
 });

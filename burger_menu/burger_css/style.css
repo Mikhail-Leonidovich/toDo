@@ -75,6 +75,19 @@
   animation-duration: 2s;
 }
 
+.burger-menu__filter {
+  background-color: rgb(215, 235, 251);
+  outline: none;
+  margin: 10px 0 10px 20px;
+  padding-left: 10px;
+  width: 80%;
+  border: none;
+  height: 30px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+  font-size: 19px;
+}
+
 .burger-menu__active .burger-menu__nav {
   left: 0;
   animation-name: animation-nav-show;
