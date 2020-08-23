@@ -72,31 +72,13 @@ const displayTasks = () => {
     let tasksItem = document.createElement("div");
     tasksItem.className = "tasks__item";
     tasksItem.id = item.id;
+    tasksList.append(tasksItem);
 
     tasksItem.append(generateTaskText(item));
 
     tasksItem.append(generateBtnDel(item));
 
     tasksItem.append(generateBtnDone(item));
-
-    btnDel.addEventListener("click", () => {
-      Tasks = Tasks.filter((item) => item.id != btnDel.parentNode.id);
-
-      tasksItem.remove(btnDel.parentNode);
-    });
-
-    btnDone.addEventListener("click", () => {
-      let currentTask = btnDone.parentNode.firstChild;
-
-      Tasks.forEach((item) => {
-        if (Number(currentTask.id) === Number(item.id)) {
-          item.checked = !item.checked;
-          currentTask.classList.toggle("done");
-        }
-      });
-    });
-
-    tasksList.append(tasksItem);
   });
 };
 
@@ -105,6 +87,8 @@ const generateTaskText = (item) => {
   taskText.className = item.checked === false ? "text" : "text done";
   taskText.innerText = item.todo;
   taskText.id = item.id;
+
+  return taskText;
 };
 
 const generateBtnDel = (item) => {
@@ -112,6 +96,14 @@ const generateBtnDel = (item) => {
   btnDel.className = "btn-del";
   btnDel.innerHTML = "Delete";
   btnDel.id = item.id;
+
+  btnDel.addEventListener("click", () => {
+    Tasks = Tasks.filter((item) => item.id != btnDel.parentNode.id);
+
+    btnDel.parentNode.remove();
+  });
+
+  return btnDel;
 };
 
 const generateBtnDone = (item) => {
@@ -119,6 +111,19 @@ const generateBtnDone = (item) => {
   btnDone.className = "btn-done";
   btnDone.innerHTML = "Done";
   btnDone.id = item.id;
+
+  btnDone.addEventListener("click", () => {
+    let currentTask = btnDone.parentNode.firstChild;
+
+    Tasks.forEach((item) => {
+      if (Number(currentTask.id) === Number(item.id)) {
+        item.checked = !item.checked;
+        currentTask.classList.toggle("done");
+      }
+    });
+  });
+
+  return btnDone;
 };
 
 incompletedTasks.addEventListener("click", () => {
