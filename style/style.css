@@ -100,19 +100,19 @@ button:hover {
   second block 
 ===============*/
 
-.block__new {
+.tasks__list {
   display: flex;
   flex-direction: column;
 }
 
-.block__list {
+.tasks__item {
   justify-content: space-around;
   margin-bottom: 15px;
   min-height: 20px;
   display: flex;
 }
 
-.block__list-text {
+.text {
   padding-left: 10px;
   width: 75%;
   min-height: 30px;
