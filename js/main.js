@@ -136,32 +136,13 @@ burgerFilter.addEventListener("click", () => {
 });
 
 filterTasks.addEventListener("input", () => {
-  let allBlockLists = document.querySelectorAll(".block__list");
+  let allTaskTexts = document.querySelectorAll(".text");
   let filterTasksValue = filterTasks.value.toLowerCase();
-  if (filterTasksValue != "") {
-    Tasks.forEach((item) => {
-      let arrayItem = item.todo.toLowerCase().includes(filterTasksValue);
-      if (arrayItem) {
-        for (let elem of allBlockLists) {
-          if (Number(item.id) === Number(elem.id)) {
-            elem.classList.remove("hide");
-          }
-        }
-      } else {
-        for (let elem of allBlockLists) {
-          if (Number(item.id) === Number(elem.id)) {
-            elem.classList.add("hide");
-          }
-        }
-      }
-    });
-  } else {
-    Tasks.forEach((item) => {
-      for (let elem of allBlockLists) {
-        if (Number(item.id) === Number(elem.id)) {
-          elem.classList.remove("hide");
-        }
-      }
-    });
+
+  for (let elem of allTaskTexts) {
+    taskTextValue = elem.innerHTML.toLowerCase().includes(filterTasksValue);
+    if (!taskTextValue && filterTasksValue != "") {
+      elem.parentNode.classList.add("hide");
+    } else elem.parentNode.classList.remove("hide");
   }
 });
