@@ -12,7 +12,7 @@ const incompletedTasks = document.getElementById("1");
 const burgerFilter = document.getElementById("2");
 const filterTasks = document.querySelector(".burger-menu__filter");
 
-let Tasks = [];
+let tasks = [];
 let switchShowIncompleted = [];
 
 let counterId = 0;
@@ -54,18 +54,18 @@ const addInTasks = (elem) => {
     checked: false,
     id: counterId,
   };
-  Tasks.push(newToDo);
+  tasks.push(newToDo);
 };
 
 const displayTasks = () => {
   tasksList.innerHTML = "";
 
   if (showChecked) {
-    switchShowIncompleted = Tasks.filter(
+    switchShowIncompleted = tasks.filter(
       (item) => item.checked === !showChecked
     );
   } else {
-    switchShowIncompleted = [...Tasks];
+    switchShowIncompleted = [...tasks];
   }
 
   switchShowIncompleted.forEach((item) => {
@@ -91,6 +91,11 @@ const generateTaskText = (item) => {
   return taskText;
 };
 
+const handleDel = (btnDel) => {
+  tasks = tasks.filter((item) => item.id != btnDel.id);
+  btnDel.parentNode.remove();
+};
+
 const generateBtnDel = (item) => {
   let btnDel = document.createElement("button");
   btnDel.className = "btn-del";
@@ -98,12 +103,18 @@ const generateBtnDel = (item) => {
   btnDel.id = item.id;
 
   btnDel.addEventListener("click", () => {
-    Tasks = Tasks.filter((item) => item.id != btnDel.parentNode.id);
-
-    btnDel.parentNode.remove();
+    handleDel(btnDel);
   });
 
   return btnDel;
+};
+
+const handleDone = (btnDone) => {
+  let currentTask = btnDone.parentNode.firstChild;
+
+  const task = tasks.find((item) => Number(item.id) === Number(currentTask.id));
+  task.checked = !task.checked;
+  currentTask.classList.toggle("done");
 };
 
 const generateBtnDone = (item) => {
@@ -113,14 +124,7 @@ const generateBtnDone = (item) => {
   btnDone.id = item.id;
 
   btnDone.addEventListener("click", () => {
-    let currentTask = btnDone.parentNode.firstChild;
-
-    Tasks.forEach((item) => {
-      if (Number(currentTask.id) === Number(item.id)) {
-        item.checked = !item.checked;
-        currentTask.classList.toggle("done");
-      }
-    });
+    handleDone(btnDone);
   });
 
   return btnDone;
